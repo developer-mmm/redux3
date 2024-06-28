@@ -8,6 +8,7 @@ function FormInput({ name, labelText, type }) {
       </div>
       <input
         type={type}
+        name={name}
         placeholder="Type here"
         className="input input-bordered w-full"
       />
