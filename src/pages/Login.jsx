@@ -27,11 +27,26 @@ function Login() {
     }
   }, [userData]);
   return (
-    <div>
-      <Form method="post">
-        <h1>Login</h1>
+    <div className="grid place-items-center min-h-screen">
+      <Form
+        method="post"
+        className="flex flex-col items-center gap-5 card bg-base-100 w-96 p-5 shadow-xl"
+      >
+        <h1 className="text-4xl font-semibold">Login</h1>
         <FormInput type="email" name="email" labelText="email" />
         <FormInput type="password" name="password" labelText="password" />
+
+        <div className="w-full">
+          {!isPending && (
+            <button className="btn btn-primary btn-block">Pass</button>
+          )}
+           {isPending && (
+            <button disabled className="btn btn-primary btn-block">Loading...</button>
+          )}
+        </div>
+        <div className="text-center">
+         do you not have any account yet ? <Link className="link-primary" to="/register">Register</Link>
+        </div>
       </Form>
     </div>
   );

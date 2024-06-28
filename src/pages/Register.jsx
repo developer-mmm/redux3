@@ -25,13 +25,26 @@ function Register() {
   }, [userData]);
 
   return (
-    <Form method="post">
-      <h1>Register</h1>
+    <div className="grid place-items-center min-h-screen">
+    <Form method="post" className="flex flex-col items-center gap-5 card bg-base-100 w-96 p-5 shadow-xl">
+      <h1 className="text-4xl font-semibold">Register</h1>
       <FormInput type="text" name="displayName" labelText="displayName" />
       <FormInput type="url" name="photoUrl" labelText="PhotoUrl" />
       <FormInput type="email" name="email" labelText="email" />
       <FormInput type="password" name="password" labelText="password" />
+      <div className="w-full">
+          {!isPending && (
+            <button className="btn btn-primary btn-block">Pass</button>
+          )}
+           {isPending && (
+            <button disabled className="btn btn-primary btn-block">Loading...</button>
+          )}
+        </div>
+        <div className="text-center">
+         Already registered ? <Link className="link-primary" to="/login">Login</Link>
+        </div>
     </Form>
+    </div>
   );
 }
 
