@@ -37,9 +37,9 @@ function Register() {
       >
         <h1 className="text-4xl font-semibold">Register</h1>
         <FormInput  type="text" name="displayName" labelText="displayName" />
-        <FormInput type="url" name="photoUrl" labelText="PhotoUrl" />
-        <FormInput type="email" name="email" labelText="email" />
         <FormInput type="password" name="password" labelText="password" />
+        <FormInput type="email" name="email" labelText="email" />
+        <FormInput type="url" name="photoUrl" labelText="PhotoUrl" />
         <div className="w-full">
           {!isPending && (
             <button className="btn btn-primary btn-block">Pass</button>
