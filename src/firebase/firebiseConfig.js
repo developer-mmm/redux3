@@ -2,12 +2,12 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBG4SbY4Eqern5yPzazeWuY9Xm_IGRGci4",
-  authDomain: "redux-3-70671.firebaseapp.com",
-  projectId: "redux-3-70671",
-  storageBucket: "redux-3-70671.appspot.com",
-  messagingSenderId: "385053771456",
-  appId: "1:385053771456:web:af660c09bfcd07541c0f25"
+  apiKey: "AIzaSyDPmfxUaSw2OqKASDcyC0vFabsaHO2OgXQ",
+  authDomain: "redux-4.firebaseapp.com",
+  projectId: "redux-4",
+  storageBucket: "redux-4.appspot.com",
+  messagingSenderId: "871225599588",
+  appId: "1:871225599588:web:e7695d69aee24e339d2171"
 };
 
 const app = initializeApp(firebaseConfig);
