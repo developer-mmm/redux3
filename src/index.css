@@ -6,4 +6,16 @@
     .align-elements {
         @apply max-w-6xl mx-auto px-4;
     }
+
+    .auth-left {
+        @apply bg-[url('https://picsum.photos/1000/1200')] bg-center bg-no-repeat bg-cover lg:block md:hidden
+    }
+
+    .auth-right {
+        @apply bg-[url('https://picsum.photos/1000/1200')] bg-center bg-no-repeat bg-cover lg:bg-none bg-slate-50 grid place-items-center min-h-screen
+    }
+
+    .auth-container {
+        @apply grid grid-cols-1 lg:grid-cols-2 w-full min-h-screen
+    }
 }

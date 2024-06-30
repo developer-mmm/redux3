@@ -7,7 +7,7 @@ import { FormInput } from "../components";
 
 //custom hooks
 import { useLogin } from "../hooks/useLogin";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export const action = async ({ request }) => {
   let formData = await request.formData();
@@ -20,34 +20,48 @@ export const action = async ({ request }) => {
 function Login() {
   const userData = useActionData();
   const { signInWithEmail, isPending } = useLogin();
+  // const [errors, setErrors] = useState({
+  //   email: "",
+  //   password: "",
+  // });
 
   useEffect(() => {
     if (userData) {
-      signInWithEmail(userData);
+      signInWithEmail(userData.email, userData.password);
     }
+
+
   }, [userData]);
   return (
-    <div className="grid place-items-center min-h-screen">
-      <Form
-        method="post"
-        className="flex flex-col items-center gap-5 card bg-base-100 w-96 p-5 shadow-xl"
-      >
-        <h1 className="text-4xl font-semibold">Login</h1>
-        <FormInput type="email" name="email" labelText="email" />
-        <FormInput type="password" name="password" labelText="password" />
+    <div className="auth-container">
+      <div className="auth-left"></div>
+      <div className="auth-right">
+        <Form
+          method="post"
+          className="flex flex-col items-center gap-5 card bg-base-100 w-96 p-5 shadow-xl"
+        >
+          <h1 className="text-4xl font-semibold">Login</h1>
+          <FormInput type="email" name="email" labelText="email" />
+          <FormInput type="password" name="password" labelText="password"  />
 
-        <div className="w-full">
-          {!isPending && (
-            <button className="btn btn-primary btn-block">Pass</button>
-          )}
-           {isPending && (
-            <button disabled className="btn btn-primary btn-block">Loading...</button>
-          )}
-        </div>
-        <div className="text-center">
-         do you not have any account yet ? <Link className="link-primary" to="/register">Register</Link>
-        </div>
-      </Form>
+          <div className="w-full">
+            {!isPending && (
+              <button className="btn btn-primary btn-block">Pass</button>
+            )}
+            {isPending && (
+              <button disabled className="btn btn-primary btn-block">
+                Loading...
+              </button>
+            )}
+          </div>
+          <div className="text-center">
+            do you not have any account yet ?{" "}
+            <Link className="link-primary" to="/register">
+              Register
+            </Link>
+          </div>
+        </Form>
+      </div>
     </div>
   );
 }

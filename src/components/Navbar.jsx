@@ -1,18 +1,22 @@
 import React from "react";
 // redux
-import { useSelector } from "react-redux";
-
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../app/userSlice";  
 //firebase;
 import { auth } from "../firebase/firebiseConfig";
 import { signOut } from "firebase/auth";
+//toast   
 import toast from "react-hot-toast";
 
+
 function Navbar() {
+  const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
   const handleoOut = async () => {
     try {
       await signOut(auth);
       toast.success("back again ✋");
+      dispatch(logout())
     } catch (error) {
       toast.error(error.message);
     }
@@ -37,7 +41,7 @@ function Navbar() {
               src={
                 user.displayName
                   ? user.photoURL
-                  : `https://api.dicebear.com/9.x/initials/svg?seed=${user.displayName}`
+                  : `https://api.dicebear.com/9.x/initials/svg?seed=${user.photoURL}`
               }
               alt=""
             />
