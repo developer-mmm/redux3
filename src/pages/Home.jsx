@@ -6,6 +6,14 @@ function Home() {
   <div className="card-body items-center text-center">
     <h2 className="card-title">Todos!</h2>
     <p >Reading books</p>
+    <p >Work time</p>
+    <p > review time</p>
+    <div className="form-control">
+  <label className="cursor-pointer label">
+    <span className="label-text">Completed: </span>
+    <input type="checkbox" defaultChecked className="checkbox checkbox-info " />
+  </label>
+</div>
     <div className="card-actions justify-end">
       <button className="btn mt-4 btn-primary btn-sm">ADD</button>
       <button className="btn mt-4 btn-accent text-red-600 btn-sm">Delet</button>
