@@ -10,7 +10,7 @@ function FormInput({ name, labelText, type, status }) {
         type={type}
         name={name}
         placeholder="Type here"
-        className={`input input-bordered input-${status} w-full`}
+        className={`input input-bordered ${status} w-full`}
       />
       
     </label>

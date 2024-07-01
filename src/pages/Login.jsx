@@ -20,17 +20,27 @@ export const action = async ({ request }) => {
 function Login() {
   const userData = useActionData();
   const { signInWithEmail, isPending } = useLogin();
-  // const [errors, setErrors] = useState({
-  //   email: "",
-  //   password: "",
-  // });
+  const [errors, setErrors] = useState({
+    email: "",
+    password: "",
+  });
 
   useEffect(() => {
-    if (userData) {
-      signInWithEmail(userData.email, userData.password);
+    if(userData){
+      if (userData?.email.trim() && userData?.password.trim()) {
+        signInWithEmail(userData.email, userData.password);
+      }
+      if (!userData?.email.trim()) {
+        setErrors((prev) => {
+          return {...prev, email: "input-error"}
+        })
+      }
+      if (!userData?.password.trim()) {
+        setErrors((prev) => {
+          return {...prev, password: "input-error"}
+        })
+      }
     }
-
-
   }, [userData]);
   return (
     <div className="auth-container">
@@ -41,8 +51,18 @@ function Login() {
           className="flex flex-col items-center gap-5 card bg-base-100 w-96 p-5 shadow-xl"
         >
           <h1 className="text-4xl font-semibold">Login</h1>
-          <FormInput type="email" name="email" labelText="email" />
-          <FormInput type="password" name="password" labelText="password"  />
+          <FormInput
+            type="email"
+            name="email"
+            labelText="email"
+            status={errors.email}
+          />
+          <FormInput
+            type="password"
+            name="password"
+            labelText="password"
+            status={errors.password}
+          />
 
           <div className="w-full">
             {!isPending && (
