@@ -7,6 +7,7 @@ import { auth } from "../firebase/firebiseConfig";
 import { signOut } from "firebase/auth";
 //toast   
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 
 function Navbar() {
@@ -29,7 +30,11 @@ function Navbar() {
             Logo
           </button>
         </div>
-        <div className="navbar-center">contact</div>
+        <div className="gap-6">
+        <div className="navbar-center"><Link className="hover:text-purple-600">Home</Link> </div>
+        <div className="navbar-center"><Link className="hover:text-purple-600">About</Link></div>
+        <div className="navbar-center"><Link className="hover:text-purple-600">Contact</Link></div>
+        </div>
         <div className="navbar-end">
           <div className="flex items-center gap-4">
             <h4 className="text-red-600  border-2 p-2 border-blue-400 rounded-full mr-4">

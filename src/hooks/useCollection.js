@@ -10,6 +10,13 @@ export const useCollection = (collectionName) => {
   useEffect(() => {
     const getData = async () => {
     const querySnapshot =  await getDocs(collection(db, collectionName))
+    const data = [];
+    querySnapshot.docs.forEach((doc) =>{
+        data.push({id: doc.id, ...doc.data()});
+    })
+
+    setData(data);
+
     }
     getData();
   }, [collectionName]);
