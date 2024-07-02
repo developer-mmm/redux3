@@ -1,25 +1,40 @@
+import { useSelector } from "react-redux";
 import { useCollection } from "../hooks/useCollection";
+import { Form } from "react-router-dom";
+import { Checkbox, FormInput } from "../components";
 
 function Home() {
-  const {data} = useCollection("todos")
-  return <div className="card bg-neutral mt-20 ml-40 text-neutral-content w-96">
-  <div className="card-body items-center text-center">
-    <h2 className="card-title">Todos!</h2>
-    <p >Reading books</p>
-    <p >Work time</p>
-    <p > review time</p>
-    <div className="form-control">
-  <label className="cursor-pointer label">
-    <span className="label-text">Completed: </span>
-    <input type="checkbox" defaultChecked className="checkbox checkbox-info " />
-  </label>
-</div>
-    <div className="card-actions justify-end">
-      <button className="btn mt-4 btn-primary btn-sm">ADD</button>
-      <button className="btn mt-4 btn-accent text-red-600 btn-sm">Delet</button>
+  const { user } = useSelector((state) => state.user);
+  const { data: todos } = useCollection("todos", ["uid", "==", user.uid]);
+  return (
+    <div className="align-elements">
+      <div className="grid grid-cols-2">
+        <div>
+          {todos &&
+            todos.map((todo) => {
+              return (
+                <div key={todo.id}>
+                  <h3 className="text-3xl">{todo.title}</h3>
+                </div>
+              );
+            })}
+        </div>
+        <div className="pt-10">
+          <Form
+            method="post"
+            className="flex flex-col items-center gap-5 card bg-base-100 w-96 p-5 shadow-xl"
+          >
+            <h1>Add New Todo</h1>
+            <FormInput type="text" labelText="" />
+            <Checkbox />
+            <div className="w-full">
+              <button className="btn btn-secondary btn-block">Add</button>
+            </div>
+          </Form>
+        </div>
+      </div>
     </div>
-  </div>
-</div>;
+  );
 }
 
 export default Home;

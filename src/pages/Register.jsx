@@ -52,9 +52,9 @@ function Register() {
       }
     
       registerWithEmail(
-        userData.email,
         userData.displayName,
         userData.photoURL,
+        userData.email,
         userData.password
       );
     }
