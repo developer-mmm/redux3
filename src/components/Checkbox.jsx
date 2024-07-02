@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Checkbox() {
+function Checkbox({name}) {
   return (
     <div className="form-control">
     <label className="cursor-pointer label">
@@ -8,6 +8,7 @@ function Checkbox() {
       <input
         type="checkbox"
         defaultChecked
+        name={name}
         className="checkbox checkbox-info"
       />
     </label>

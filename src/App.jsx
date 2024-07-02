@@ -14,6 +14,8 @@ import MainLayout from "./layouts/MainLayout";
 // actions
 import { action as LoginAction } from "./pages/Login";
 import { action as RegisterAction } from "./pages/Register";
+import {action as HomeAction} from "./pages/Home"
+// components;
 import { ProtectedRoutes } from "./components";
 
 //redux
@@ -24,6 +26,7 @@ import { isAuthChange, login } from "./app/userSlice";
 //firebase
 import { auth } from "./firebase/firebiseConfig";
 import { onAuthStateChanged } from "firebase/auth";
+import { action } from "./pages/Home";
 
 
 function App() {
@@ -41,6 +44,7 @@ function App() {
         {
           index: true,
           element: <Home />,
+          action: HomeAction,
         },
       ],
     },
