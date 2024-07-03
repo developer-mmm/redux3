@@ -49,6 +49,7 @@ function Login() {
         sendPasswordResetEmail(auth, userData.email.trim())
           .then(() => {
             toast.success("Send link")
+            setForgetPassword(!forgetPassword)
           })
           .catch((error) => {
             const errorMessage = error.errormessage;
