@@ -75,7 +75,7 @@ function Register() {
         <FormInput type="password" name="password" labelText="password" status={errors.password} />
         <div className="w-full">
           {!isPending && (
-            <button className="btn btn-primary btn-block">Pass</button>
+            <button className="btn btn-primary btn-block">Register</button>
           )}
           {isPending && (
             <button disabled className="btn btn-primary btn-block">

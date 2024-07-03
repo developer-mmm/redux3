@@ -15,7 +15,7 @@ function Navbar() {
   const handleoOut = async () => {
     try {
       await signOut(auth);
-      toast.success("back again ✋");
+      toast.success(" see you soon ✋");
       dispatch(logout());
     } catch (error) {
       toast.error(error.message);
