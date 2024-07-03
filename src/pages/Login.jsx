@@ -106,7 +106,7 @@ function Login() {
                 onClick={() => setForgetPassword(!forgetPassword)}
                 className="btn btn-link btn-sm"
               >
-                Change password
+                Reset password
               </button>
             </p>
           </div>
