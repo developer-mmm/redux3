@@ -3,7 +3,7 @@ import { useCollection } from "../hooks/useCollection";
 import { Form, useActionData } from "react-router-dom";
 import { Checkbox, FormInput } from "../components";
 import { useEffect } from "react";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, doc, deleteDoc } from "firebase/firestore";
 import { db } from "../firebase/firebiseConfig";
 
 export const action = async ({ request }) => {
@@ -28,15 +28,20 @@ function Home() {
       addDoc(collection(db, "todos"), NewDoc)
     }
   }, [userData])
+
+  const deleteDocument = (id) => {
+    deleteDoc(doc(db, "todos", id))
+  }
   return (
-    <div className="align-elements">
-      <div className="grid grid-cols-2">
+    <div className="align-elements ">
+      <div className="grid grid-cols-2 ">
         <div>
           {todos &&
             todos.map((todo) => {
               return (
-                <div key={todo.id}>
+                <div key={todo.id} className="flex g-4 items-center border-2 rounded-2xl w-96 justify-between p-5 mt-2">
                   <h3 className="text-3xl">{todo.title}</h3>
+                  <button onClick={() => deleteDocument(todo.id)} className="btn btn-primary btn-sm">Delete</button>
                 </div>
               );
             })}
