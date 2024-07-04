@@ -6,14 +6,15 @@ import {
   getDocs,
   doc,
   onSnapshot,
+  orderBy,
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
 
 import { db } from "../firebase/firebiseConfig";
 
-export const useCollection = (collectionName, whereOptions) => {
+export const useCollection = (collectionName, whereOptions, orderOptions) => {
   const [data, setData] = useState(null);
-  const q = query(collection(db, collectionName), where(...whereOptions));
+  const q = query(collection(db, collectionName), where(...whereOptions), orderBy(...orderOptions));
   useEffect(() => {
     onSnapshot(q, (querySnapshot) => {
       const todos = [];

@@ -60,7 +60,10 @@ function App() {
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      dispatch(login(user));
+      if(user?.displayName && user?.photoURL){
+        dispatch(login(user));
+
+      }
       dispatch(isAuthChange());
     });
   }, []);

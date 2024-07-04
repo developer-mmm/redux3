@@ -3,7 +3,7 @@ import { useCollection } from "../hooks/useCollection";
 import { Form, useActionData } from "react-router-dom";
 import { Checkbox, FormInput } from "../components";
 import { useEffect, useState } from "react";
-import { collection, addDoc, doc, deleteDoc } from "firebase/firestore";
+import { collection, addDoc, doc, deleteDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase/firebiseConfig";
 import toast from "react-hot-toast";
 
@@ -17,7 +17,7 @@ export const action = async ({ request }) => {
 
 function Home() {
   const { user } = useSelector((state) => state.user);
-  const { data: todos } = useCollection("todos", ["uid", "==", user.uid]);
+  const { data: todos } = useCollection("todos", ["uid", "==", user.uid], ['createdAt']);
   const userData = useActionData();
   const [errors, setErrors] = useState({});
   useEffect(() => {
@@ -25,6 +25,7 @@ function Home() {
       const NewDoc = {
         ...userData,
         uid: user.uid,
+        createdAt: serverTimestamp()
       };
 
       if (!userData?.title.trim()) {
@@ -50,7 +51,7 @@ function Home() {
       <div className="grid grid-cols-2 ">
         <div>
           {todos &&
-            todos.map((todo) => {
+            todos.reverse().map((todo) => {
               return (
                 <div
                   key={todo.id}

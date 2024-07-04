@@ -44,15 +44,15 @@ function Navbar() {
         </div>
         <div className="navbar-end">
           <div className="flex items-center gap-4">
-            {/* <h4 className="text-red-600  border-2 p-2 border-blue-400 rounded-full mr-4">
-              {user.email}
-            </h4> */}
+            <h4 className="text-blue-600  border-2 p-2 border-blue-400 rounded-full mr-4">
+              {user.displayName}
+            </h4>
             <div className="avatar">
               <div className="ring-primary mr-4 ring-offset-base-100 w-10 h-10 rounded-full ring ring-offset-2">
                 <img
                   src={
-                    user.photoURL
-                      ? user.displayName
+                    user.displayName
+                      ? user.photoURL
                       : `https://api.dicebear.com/9.x/initials/svg?seed=${user.photoURL}`
                   }
                   alt=""
