@@ -14,7 +14,7 @@ import MainLayout from "./layouts/MainLayout";
 // actions
 import { action as LoginAction } from "./pages/Login";
 import { action as RegisterAction } from "./pages/Register";
-import {action as HomeAction} from "./pages/Home"
+import { action as HomeAction } from "./pages/Home";
 // components;
 import { ProtectedRoutes } from "./components";
 
@@ -26,8 +26,6 @@ import { isAuthChange, login } from "./app/userSlice";
 //firebase
 import { auth } from "./firebase/firebiseConfig";
 import { onAuthStateChanged } from "firebase/auth";
-import { action } from "./pages/Home";
-
 
 function App() {
   const { user, isAuthReady } = useSelector((state) => state.user);
@@ -62,14 +60,12 @@ function App() {
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      dispatch(login(user))
-      dispatch(isAuthChange())
+      dispatch(login(user));
+      dispatch(isAuthChange());
+    });
+  }, []);
 
-    })
-  }, [])
-
-  return <>{ isAuthReady && <RouterProvider router={routes} />}</>; 
+  return <>{isAuthReady && <RouterProvider router={routes} />}</>;
 }
 
 export default App;
-

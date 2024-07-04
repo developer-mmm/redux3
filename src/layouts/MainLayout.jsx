@@ -1,16 +1,16 @@
 import React from "react";
 //components
-import {Navbar} from "../components";
+import { Navbar } from "../components";
 import { Outlet } from "react-router-dom";
 
 function MainLayout() {
   return (
     <>
-    <Navbar/>
-    <main>
-        <Outlet/>
-    </main>
+      <Navbar />
+      <main>
+        <Outlet />
+      </main>
     </>
-  )
+  );
 }
 export default MainLayout;

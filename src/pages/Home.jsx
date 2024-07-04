@@ -19,11 +19,9 @@ function Home() {
   const { user } = useSelector((state) => state.user);
   const { data: todos } = useCollection("todos", ["uid", "==", user.uid]);
   const userData = useActionData();
-  const [errors, setErrors] = useState({
-   
-  });
+  const [errors, setErrors] = useState({});
   useEffect(() => {
-    if(userData){
+    if (userData) {
       const NewDoc = {
         ...userData,
         uid: user.uid,
@@ -31,22 +29,22 @@ function Home() {
 
       if (!userData?.title.trim()) {
         setErrors((prev) => {
-          return {...prev, title: "input-error"}
-        })
+          return { ...prev, title: "input-error" };
+        });
       }
 
-      addDoc(collection(db, "todos"), NewDoc).then(()=> {
-        toast.success("Added successfully")
-      })
+      addDoc(collection(db, "todos"), NewDoc).then(() => {
+        toast.success("Added successfully");
+      });
     }
-  }, [userData])
+  }, [userData]);
 
   const deleteDocument = (id) => {
-    deleteDoc(doc(db, "todos", id)).then(()=> {
-      toast.success("deleted")
-    })
-  }
- 
+    deleteDoc(doc(db, "todos", id)).then(() => {
+      toast.success("deleted");
+    });
+  };
+
   return (
     <div className="align-elements ">
       <div className="grid grid-cols-2 ">
@@ -54,9 +52,17 @@ function Home() {
           {todos &&
             todos.map((todo) => {
               return (
-                <div key={todo.id} className="flex g-4 items-center border-2 rounded-2xl w-96 justify-between p-5 shadow-xl mt-2">
+                <div
+                  key={todo.id}
+                  className="flex g-4 items-center border-2 rounded-2xl w-96 justify-between p-5 shadow-xl mt-2"
+                >
                   <h3 className="text-3xl">{todo.title}</h3>
-                  <button onClick={() => deleteDocument(todo.id)} className="btn btn-primary hover:text-red-600 btn-sm">Delete</button>
+                  <button
+                    onClick={() => deleteDocument(todo.id)}
+                    className="btn btn-primary hover:text-red-600 btn-sm"
+                  >
+                    Delete
+                  </button>
                 </div>
               );
             })}
@@ -67,10 +73,15 @@ function Home() {
             className="flex flex-col items-center gap-5 card bg-base-100 w-96 p-5 shadow-xl"
           >
             <h1 className="text-2xl text-blue-400">Add New Todo</h1>
-            <FormInput type="text" labelText="title" name="title" status={errors.title} />
+            <FormInput
+              type="text"
+              labelText="title"
+              name="title"
+              status={errors.title}
+            />
             <Checkbox name="completed" />
             <div className="w-full">
-              <button  className="btn btn-secondary btn-block">Add </button>
+              <button className="btn btn-secondary btn-block">Add </button>
             </div>
           </Form>
         </div>

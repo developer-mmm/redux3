@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import {getFirestore} from "firebase/firestore";
+
 const firebaseConfig = {
   apiKey: "AIzaSyDPmfxUaSw2OqKASDcyC0vFabsaHO2OgXQ",
   authDomain: "redux-4.firebaseapp.com",

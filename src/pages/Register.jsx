@@ -26,31 +26,41 @@ function Register() {
 
   useEffect(() => {
     if (userData) {
-      if (userData?.email.trim() && userData?.displayName.trim() && userData.photoURL.trim() && userData.password) {
-        registerWithEmail(userData.email, userData.displayName, userData.photoURL, userData.password);
+      if (
+        userData?.email.trim() &&
+        userData?.displayName.trim() &&
+        userData.photoURL.trim() &&
+        userData.password
+      ) {
+        registerWithEmail(
+          userData.email,
+          userData.password,
+          userData.displayName,
+          userData.photoURL,
+        );
       }
-      
+
       if (!userData?.email.trim()) {
         setErrors((prev) => {
-          return {...prev, email: "input-error"}
-        })
+          return { ...prev, email: "input-error" };
+        });
       }
       if (!userData?.displayName.trim()) {
         setErrors((prev) => {
-          return {...prev, displayName: "input-error"}
-        })
+          return { ...prev, displayName: "input-error" };
+        });
       }
       if (!userData?.photoURL.trim()) {
         setErrors((prev) => {
-          return {...prev, photoURL: "input-error"}
-        })
+          return { ...prev, photoURL: "input-error" };
+        });
       }
       if (!userData?.password.trim()) {
         setErrors((prev) => {
-          return {...prev, password: "input-error"}
-        })
+          return { ...prev, password: "input-error" };
+        });
       }
-    
+
       registerWithEmail(
         userData.displayName,
         userData.photoURL,
@@ -64,33 +74,53 @@ function Register() {
     <div className="auth-container">
       <div className="auth-left"></div>
       <div className="auth-right">
-      <Form
-        method="post"
-        className="flex flex-col items-center gap-5 card bg-base-100 w-96 p-5 shadow-xl"
-      >
-        <h1 className="text-4xl font-semibold">Register</h1>
-        <FormInput  type="text" name="displayName" labelText="displayName" status={errors.displayName} />
-        <FormInput type="url" name="photoURL" labelText="PhotoUrl" status={errors.photoURL} />
-        <FormInput type="email" name="email" labelText="email" status={errors.email} />
-        <FormInput type="password" name="password" labelText="password" status={errors.password} />
-        <div className="w-full">
-          {!isPending && (
-            <button className="btn btn-primary btn-block">Register</button>
-          )}
-          {isPending && (
-            <button disabled className="btn btn-primary btn-block">
-              Loading...
-            </button>
-          )}
-        </div>
-        <div className="text-center">
-          Already registered ?{" "}
-          <Link className="link-primary" to="/login">
-            Login
-          </Link>
-        </div>
-      </Form>
-    </div>
+        <Form
+          method="post"
+          className="flex flex-col items-center gap-5 card bg-base-100 w-96 p-5 shadow-xl"
+        >
+          <h1 className="text-4xl font-semibold">Register</h1>
+          <FormInput
+            type="text"
+            name="displayName"
+            labelText="displayName"
+            status={errors.displayName}
+          />
+          <FormInput
+            type="url"
+            name="photoURL"
+            labelText="PhotoUrl"
+            status={errors.photoURL}
+          />
+          <FormInput
+            type="email"
+            name="email"
+            labelText="email"
+            status={errors.email}
+          />
+          <FormInput
+            type="password"
+            name="password"
+            labelText="password"
+            status={errors.password}
+          />
+          <div className="w-full">
+            {!isPending && (
+              <button className="btn btn-primary btn-block">Register</button>
+            )}
+            {isPending && (
+              <button disabled className="btn btn-primary btn-block">
+                Loading...
+              </button>
+            )}
+          </div>
+          <div className="text-center">
+            Already registered ?{" "}
+            <Link className="link-primary" to="/login">
+              Login
+            </Link>
+          </div>
+        </Form>
+      </div>
     </div>
   );
 }

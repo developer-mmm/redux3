@@ -28,6 +28,7 @@ function Login() {
   });
 
   useEffect(() => {
+    console.log(userData)
     if (userData) {
       if (userData?.email.trim() && userData.password?.trim()) {
         signInWithEmail(userData.email, userData.password);
