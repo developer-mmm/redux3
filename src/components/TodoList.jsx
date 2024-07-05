@@ -1,25 +1,15 @@
 import { useFirestore } from "../hooks/useFirestore";
+import ModalDialog from "./ModalDialog";
+
+import { setSelectedTodo } from "../app/todosSlice"; 
+import { UseDispatch } from "react-redux";
 
 function TodoList({ todos }) {
   const { deleteDocument, changeStatus } = useFirestore();
+
   return (
     <div>
-      {/* Open the modal using document.getElementById('ID').showModal() method */}
-
-      <dialog id="my_modal_1" className="modal">
-        <div className="modal-box">
-          <h3 className="font-bold text-lg">Hello!</h3>
-          <p className="py-4">
-            Press ESC key or click the button below to close
-          </p>
-          <div className="modal-action">
-            <form method="dialog">
-              {/* if there is a button in form, it will close the modal */}
-              <button className="btn">Close</button>
-            </form>
-          </div>
-        </div>
-      </dialog>
+      <ModalDialog />
 
       {todos &&
         todos.reverse().map((todo) => {
@@ -33,9 +23,7 @@ function TodoList({ todos }) {
               <h3 className="text-3xl">{todo.title}</h3>
               <button
                 className="btn btn-outline ml-2 mr-2 btn-sm"
-                onClick={() =>
-                  document.getElementById("my_modal_1").showModal()
-                }
+                onClick={() => handeModal(todo)}
               >
                 Change modal
               </button>
