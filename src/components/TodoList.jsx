@@ -32,14 +32,14 @@ function TodoList({ todos }) {
             >
               <h3 className="text-3xl">{todo.title}</h3>
               <button
-                className="btn btn-sm"
+                className="btn btn-outline ml-2 mr-2 btn-sm"
                 onClick={() =>
                   document.getElementById("my_modal_1").showModal()
                 }
               >
                 Change modal
               </button>
-              <div className="flex flex-wrap-reverse items-center">
+              <div className="flex flex-wrap-reverse ">
                 <button
                   onClick={() => changeStatus(todo.id, todo.completed)}
                   className="btn btn-block mt-2 btn-secondary hover:text-green-400 btn-sm"
@@ -48,7 +48,7 @@ function TodoList({ todos }) {
                 </button>
                 <button
                   onClick={() => deleteDocument(todo.id)}
-                  className="btn  ml-10  btn-primary hover:text-red-600 btn-sm"
+                  className="btn  ml-8  btn-primary hover:text-red-600 btn-sm"
                 >
                   Delete
                 </button>
