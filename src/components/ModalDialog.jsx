@@ -9,6 +9,7 @@ function ModalDialog() {
     const handleSubmit = (e) => {
         e.preventDefault();
         changeTitle(SelectedTodo.id, inputRef.current.value);
+        document.getElementById("my_modal_1").close()
     }
   return (
      <dialog id="my_modal_1" className="modal">
@@ -24,7 +25,7 @@ function ModalDialog() {
            {!isPending && <button type="submit" className="btn btn-primary">Submit</button>}
            {isPending && <button disabled className="btn btn-primary">Loading...</button>}
 
-           <button className="btn">Close</button>
+           <button  type="button" className="btn">Close</button>
          </form>
        </div>
      </div>
