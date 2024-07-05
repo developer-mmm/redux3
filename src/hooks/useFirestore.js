@@ -1,6 +1,7 @@
 import { addDoc, collection, serverTimestamp, deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase/firebiseConfig";
 import toast from "react-hot-toast";
+import { useState } from "react";
 export const useFirestore = () => {
   // Delete func;
   const deleteDocument = async (id) => {
@@ -28,5 +29,18 @@ export const useFirestore = () => {
     toast.success("Status Changed")
   }
 
-  return { deleteDocument, addNewDoc, changeStatus };
+  const [isPending, setIsPending] = useState(false)
+
+  const changeTitle = async (id, newTitle) => {
+    setIsPending(true)
+    const selectedDoc = doc(db, 'todos', id)
+    await updateDoc(selectedDoc,{
+      title: newTitle,
+    })
+    setIsPending(false)
+    toast.success("Title Changed")
+  }
+  
+
+  return { deleteDocument, addNewDoc, changeStatus, changeTitle, isPending  };
 };

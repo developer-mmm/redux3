@@ -1,11 +1,17 @@
 import { useFirestore } from "../hooks/useFirestore";
 import ModalDialog from "./ModalDialog";
 
-import { setSelectedTodo } from "../app/todosSlice"; 
-import { UseDispatch } from "react-redux";
+import { setSelectedTodo } from "../app/todosSlice";
+import { useDispatch } from "react-redux";
 
 function TodoList({ todos }) {
+  const dispatch = useDispatch();
   const { deleteDocument, changeStatus } = useFirestore();
+
+  const handleChange = (todo) => {
+    dispatch(setSelectedTodo(todo));
+    document.getElementById("my_modal_1").showModal();
+  };
 
   return (
     <div>
@@ -23,7 +29,7 @@ function TodoList({ todos }) {
               <h3 className="text-3xl">{todo.title}</h3>
               <button
                 className="btn btn-outline ml-2 mr-2 btn-sm"
-                onClick={() => handeModal(todo)}
+                onClick={() => handleChange(todo)}
               >
                 Change modal
               </button>
